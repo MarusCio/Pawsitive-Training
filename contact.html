@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <link rel="stylesheet" type="text/css" href="meniu.css" >
+<link rel="icon" type="image/png" href="poze/favicon.png">
+</head>
+<body>
+    <header>
+        <h1>Contact</h1>
+        </header>
+        <nav>
+            <ul class="meniu">
+                <li><a href="Pawsitive.html">Acasă</a></li>
+                <li><a href="despre.html">Despre noi</a></li>
+                <li><a href="curs.html">Curs dresaj</a></li>
+                <li><a href="recenzii.html">Recenzii</a>
+                  <ul class="submeniu">
+                    <li><a href="lasa_o_recenzie.html">Lasă o Recenzie</a></li>
+                  </ul>
+                </li>
+                <li><a href="contact.html">Contact</a>
+                  <ul class="submeniu">
+                    <li><a href="contact.html">Formular de Contact</a></li>
+                    <li><a href="intrebari.html">Întrebări Frecvente</a></li>
+                  </ul>
+                </li>
+            </ul>
+        </nav>
+
+
+    <main>
+        <section>
+            <h2>Contactează-ne</h2>
+            <form>
+                <label>Nume:</label>
+                <input type="text" id="name" required>
+
+                <label>Email:</label>
+                <input type="email" id="email" required>
+
+                <label>Mesaj:</label>
+                <textarea id="mesaj_contact" required></textarea>
+
+                <button id="contact_trimis">Trimite</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+
+
+    <ul class="retele">
+    <li><a href="https://www.facebook.com/profile.php?id=100087271282632" target="_blank"><img src="poze/facebook.png" alt="Pagina de Facebook Pawsitive"></a></li>
+    <li><a href="https://www.instagram.com/davidmariusciobanu/" target="_blank"><img src="poze/instagram.png" alt="Pagina de Instagram Pawsitive"></a></li>
+    <li><a href="#"><img src="poze/X.jpg" alt="Pagina de X Pawsitive"></a></li>
+    <li><a href="https://www.youtube.com/@mariusciobanu908" target="_blank"><img src="poze/yt.png" alt="Pagina de Youtube Pawsitive"></a></li>
+    </ul>
+    <div class="info">
+    <ul>
+    <li class="footer-list_header">Offers</li>
+    <li><a href="curs.html">Products</a></li>
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Categories</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    </ul>
+
+    <ul>
+    <li class="footer-list_header">Documents</li>
+    <li><a href="despre.html">About</a></li>
+    <li><a href="#">Privacy Policy</a></li>
+    <li><a href="#">Terms of Service</a></li>
+    <li><a href="#">Cookies</a></li>
+    </ul>
+
+    <ul>
+    <li class="footer-list_header">Work with us</li>
+    <li><a href="#">Affiliate</a></li>
+    <li><a href="#">Collaborations</a></li>
+    <li><a href="#">Sponsorships</a></li>
+    <li><a href="#">Partnerships </a></li>
+    </ul>
+    </div>
+    <p>&copy; Made with &#129505; by Marius Ciobanu</p>
+    </footer>
+
+
+    <script>
+
+    function contact_form() {
+    let nume = document.getElementById('name');
+    let email = document.getElementById('email');
+    let mesaj = document.getElementById('mesaj_contact');
+    let butonContact = document.getElementById('contact_trimis');
+
+    butonContact.addEventListener('click', () => {
+      if (nume.value && mesaj.value && email.value) {
+       let mesaj_contact = {
+       Nume: nume.value,
+       Email: email.value,
+       Mesaj: mesaj.value,
+    };
+
+        localStorage.setItem('mesaj_contact', JSON.stringify(mesaj_contact));
+        alert(`Multumim ${mesaj_contact.Nume} ca ne-ati contactat! Vom raspunde la problema cat se poate de repede.`);
+            }
+        else {
+          alert("Vă rugăm să completați toate câmpurile!");
+            }
+        });
+    }
+
+    window.onload=function(){
+    contact_form();
+    }
+
+    </script>
+</body>
+</html>

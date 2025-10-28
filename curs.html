@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursur Pawsitive</title>
+    <link rel="stylesheet" type="text/css" href="meniu.css">
+    <link rel="icon" type="image/png" href="poze/favicon.png">
+</head>
+<body>
+    <header>
+        <h1>Cursuri de Dresaj</h1>
+    </header>
+    <nav>
+        <ul class="meniu">
+            <li><a href="Pawsitive.html">Acasă</a></li>
+            <li><a href="despre.html">Despre noi</a></li>
+            <li><a href="curs.html">Curs dresaj</a></li>
+            <li><a href="recenzii.html">Recenzii</a>
+                <ul class="submeniu">
+                    <li><a href="lasa_o_recenzie.html">Lasă o Recenzie</a></li>
+                </ul>
+            </li>
+            <li><a href="contact.html">Contact</a>
+                <ul class="submeniu">
+                    <li><a href="contact.html">Formular de Contact</a></li>
+                    <li><a href="intrebari.html">Întrebări Frecvente</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <main>
+        <section>
+            <h2>Module Disponibile</h2>
+            <article>
+                <h3>1. Dresaj de bază</h3>
+                <p>Învățăm comenzile fundamentale si cum să comunicăm eficient cu câinele.</p>
+            </article>
+            <article>
+                <h3>2. Comportament și disciplină</h3>
+                <p>Tehnici de control și comportament în diferite medii.</p>
+            </article>
+        </section>
+        <section>
+            <h2>Tarifele pentru cazarea la pensiunea canina</h2>
+            <h4>Preturi pentru pensiunea canina incepand cu data de 1 Decembrie 2024</h4>
+            <p>💥1-5 zile- 100 ron/zi cu hrana proprietar sau 110 ron/zi cu hrana noastra</p>
+            <p>💥5-10 zile- 80 ron/zi cu hrana proprietar sau 90 ron/zi cu hrana noastra</p>
+            <p>💥peste 10 zile- 60 ron/zi cu hrana proprietar sau 70 ron/zi cu hrana noastra</p>
+        </section>
+
+        <section>
+            <div class="galerie_poze">
+                <h2>Galerie de imagini</h2>
+                <div class="canvas-container">
+                    <!-- Cercuri pentru imagini -->
+                    <canvas id="cerc1" width="50" height="50"></canvas>
+                    <canvas id="cerc2" width="50" height="50"></canvas>
+                    <canvas id="cerc3" width="50" height="50"></canvas>
+                    <canvas id="cerc4" width="50" height="50"></canvas>
+                    <canvas id="cerc5" width="50" height="50"></canvas>
+                    <canvas id="cerc6" width="50" height="50"></canvas>
+                </div>
+
+                <!-- Imaginea afisata -->
+                <div class="imagine-afisata">
+                    <img id="img_curenta" src="" alt="Imagine">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <ul class="retele">
+            <li><a href="https://www.facebook.com/profile.php?id=100087271282632" target="_blank"><img src="poze/facebook.png" alt="Pagina de Facebook Pawsitive"></a></li>
+            <li><a href="https://www.instagram.com/davidmariusciobanu/" target="_blank"><img src="poze/instagram.png" alt="Pagina de Instagram Pawsitive"></a></li>
+            <li><a href="#"><img src="poze/X.jpg" alt="Pagina de X Pawsitive"></a></li>
+            <li><a href="https://www.youtube.com/@mariusciobanu908" target="_blank"><img src="poze/yt.png" alt="Pagina de Youtube Pawsitive"></a></li>
+        </ul>
+        <div class="info">
+            <ul>
+                <li class="footer-list_header">Offers</li>
+                <li><a href="curs.html">Products</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Categories</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+
+            <ul>
+                <li class="footer-list_header">Documents</li>
+                <li><a href="despre.html">About</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="#">Cookies</a></li>
+            </ul>
+
+            <ul>
+                <li class="footer-list_header">Work with us</li>
+                <li><a href="#">Affiliate</a></li>
+                <li><a href="#">Collaborations</a></li>
+                <li><a href="#">Sponsorships</a></li>
+                <li><a href="#">Partnerships </a></li>
+            </ul>
+        </div>
+        <p>&copy; Made with &#129505; by Marius Ciobanu</p>
+    </footer>
+
+<script>
+fetch("http://localhost:8000/poze.json")
+.then((response) => {
+  if (response.status === 200) {
+    return response.json();
+  }
+   else {
+        throw new Error("Statusul este " + response.status);
+        }
+    })
+.then((data) => {
+  const images = data.imagini;
+
+  function desenez_cerc(canvas, color) {
+  if (canvas.getContext) {
+  const ctx = canvas.getContext("2d");
+  const radius = canvas.width / 2;
+  const centerX = canvas.width / 2;
+  const centerY = canvas.height / 2;
+
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height); // Curata canvasul
+  ctx.beginPath();
+  ctx.arc(centerX, centerY, radius - 5, 0, Math.PI * 2, true);
+  ctx.fillStyle = color;
+  ctx.fill();
+  ctx.closePath();
+    }
+}
+// Vectorul de imagini din JSON
+
+images.forEach((image, index) => {
+let canvas = document.getElementById(`cerc${index + 1}`);
+
+desenez_cerc(canvas, "pink");
+
+canvas.addEventListener("click", () => {
+document.getElementById("img_curenta").src = image;
+      });
+  });
+
+  })
+  .catch((err) => {
+    console.error("Eroare:", err.message);
+});
+</script>
+</body>
+</html>

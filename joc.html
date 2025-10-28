@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="meniu.css">
+    <script type="text/javascript" src="Pawsitive.js"></script>
+    <link rel="icon" type="image/png" href="poze/favicon.png">
+    <title>Pawsitive Training </title>
+<style>
+
+body{
+ font-family: Arial, sans-serif;
+ text-align: center;
+ background-color: pink;
+ margin: 0;
+ padding: 20px;
+}
+
+</style>
+
+</head>
+
+
+  <body>
+    <h1 id="multumesc">Multumim pentru achizitie!</h1>
+    <div class="message" id="multumim"></div>
+
+ <div>
+   <p id="inceperejoc">Este timpul pentru niste distractie!</p>
+     <h1 id="titlujoc">Click the Treat!</h1>
+   <p id="p1"> Mai jos aveti un joculet. In cazul in care vreti sa va jucati regulile sunt urmatoarele:
+  <p id="p2">Da click pe jucarii si pe mancarea de caini petru a castiga puncte, dar ai grija sa nu te atinci de pisica suparata. In cazul in care o deranjezi, vei pierde. Distractie placuta!</p>
+  </div>
+  <div id="scor">Scor: 0</div>
+  <div id="timp">Timp ramas: 60 secunde</div>
+  <button id="start">Incepe Jocul</button>
+  <div id="gameArea"></div>
+
+  <button id="inapoi_la_pagina">Pagina Principala</button>
+
+  <script>
+let butoninapoi=document.getElementById('inapoi_la_pagina');
+
+
+butoninapoi.addEventListener('click', () => {
+window.location.href = 'Pawsitive.html';
+});
+
+const dateCard = JSON.parse(localStorage.getItem('dateCard'));
+
+let message =`Multumesc, ${dateCard.numeCard}! Veti fi contactat in scurt timp la numarul de telefon: ${dateCard.telefon}`
+
+document.getElementById('multumim').innerText = message;
+
+let gameArea = document.getElementById("gameArea");
+let afisScor = document.getElementById("scor");
+let afisTimp = document.getElementById("timp");
+let buton_start_joc = document.getElementById("start");
+
+let scor = 0;
+let timpRamas = 60;
+let cronometru;
+let timp_intre_poze;
+let probabil_pisica = 0.3;
+
+const poze_bune = [
+ "poze/lama.png",
+ "poze/elan.png",
+ "poze/mingii.png",
+ "poze/os.png",
+ "poze/bobite.png",
+];
+
+const Grumpy_cat = "poze/grumpy_cat.png";
+
+
+
+function startJoc() {
+buton_start_joc.style.display = "none";
+
+cronometru = setInterval(() => {
+timpRamas--;
+afisTimp.textContent = `Timp ramas: ${timpRamas} secunde`;
+
+if (timpRamas <= 0) {
+clearInterval(cronometru);
+alert(`Timpul a expirat! Ai reusit sa acumulezi un total de ${scor} puncte.`);
+ResetezJoc();
+}
+
+}, 1000);
+
+afisPozaNoua();
+}
+
+
+function curata() {
+  while (gameArea.firstChild) {
+    gameArea.removeChild(gameArea.firstChild);
+}
+}
+
+
+function ResetezJoc() {
+clearInterval(cronometru);
+clearTimeout(timp_intre_poze);
+curata();
+
+scor = 0;
+timpRamas = 60;
+
+afisScor.textContent = "Scor: 0";
+afisTimp.textContent = "Timp ramas: 60 secunde";
+buton_start_joc.style.display = "block";
+}
+
+function afisPozaNoua() {
+  clearTimeout(timp_intre_poze);
+
+let pisica = Math.random() < probabil_pisica;
+const poza_random = document.createElement("div");
+poza_random.classList.add("target");
+poza_random.style.backgroundImage = `url(${pisica ? Grumpy_cat : poze_bune[Math.floor(Math.random() * poze_bune.length)]})`;
+poza_random.style.top = `${Math.random() * (gameArea.offsetHeight - 100)}px`;
+poza_random.style.left = `${Math.random() * (gameArea.offsetWidth - 100)}px`;
+
+poza_random.addEventListener("click", () => {
+  if (pisica) {
+  curata();
+  alert("Din pacate ai pierdut... Data viitoare stai departe de pisica!");
+  ResetezJoc();
+  }
+    else {
+      scor++;
+      afisScor.textContent = `Scor: ${scor}`;
+      poza_random.remove();
+      afisPozaNoua();
+        }
+    });
+
+  gameArea.appendChild(poza_random);
+
+
+  timp_intre_poze = setTimeout(() => {
+   if (poza_random.parentNode) {
+      poza_random.remove();
+      afisPozaNoua();
+        }
+      }, 1000);
+    }
+
+buton_start_joc.addEventListener("click", startJoc);
+
+    ResetezJoc();
+  </script>
+</body>
+</html>

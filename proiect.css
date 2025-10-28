@@ -1,0 +1,288 @@
+body {
+            font-family: Garamond, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #662249;
+	          height:100%;
+        }
+
+header {
+        background-color: #ED9E59;
+        padding: 10px;
+	       height:auto;
+	       width: auto;
+        }
+
+#inceput h1{
+  font-size: 450%;
+	text-align:center;
+	color: #1B1931;}
+
+#inceput img {
+	height: 70%;
+	width: 20%;
+  animation: pulse 2s infinite alternate;
+	}
+
+
+#poza_inlocuia{
+  height: 450px;
+}
+nav{
+	background-color: #A34054;
+	width:100%;
+  height: auto;
+	position:sticky;
+	top:0;
+	z-index:20;
+	}
+
+nav ul{
+	list-style-type: none;
+	margin:0;
+	padding:0;
+}
+
+nav a{
+	font-weight: bold;
+	text-decoration: none;
+	color: #E9BCB9;
+	display: block;
+	transition: background-color 2s, color 2s, font-size 2s;
+
+	}
+
+nav a:hover {
+	color: orange;
+	background-color:#44174E;
+	font-size: 25px;
+}
+
+nav>ul.meniu>li>ul.submeniu{
+	display:none;
+}
+
+nav>ul.meniu>li:hover>ul.submeniu{
+	display:block;
+	position:relative;
+	z-index:2;
+}
+
+ul.meniu{
+	display:flex;
+	flex-flow:row nowrap;
+	justify-content: space-between;
+}
+
+ul.meniu>li{
+	flex:1 200px;
+	border:1px solid white;
+	height:4.0em;
+	line-height:4.0em;
+	text-align:center;
+}
+
+ul.submeniu>li{
+	background-color: #A34054;
+	border:1px solid white;
+	height:4.0em;
+	line-height:4.0em;
+	text-align:center;
+}
+
+#comenzi_de_baza li{
+    list-style: none;
+}
+
+#comenzi_de_baza li::before {
+    content: "👉 ";
+}
+
+section {
+        font-size: 1.3em;
+	      color: #A34054;
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #44174E;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease, background-color 0.3s ease;
+
+        }
+
+section:hover {
+        transform: scale(1.03);
+        background-color: #1B1931;
+        color: #ED9E59;
+        }
+
+h1, h2 {
+        color: #E9BCB9;
+        }
+
+ul {
+        list-style-type: square;
+        padding-left: 20px;
+        }
+
+.image-container {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 20px;
+        }
+
+.image-container img {
+        width: 45%;
+        border-radius: 8px;
+        transition: transform 0.3s ease;
+        }
+
+.image-container img:hover {
+        transform: scale(1.05);
+        }
+
+
+footer {
+    background-color: #1B1931;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    bottom: 0;
+    width: auto;
+}
+
+footer .retele{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding:0;
+    gap:15px;
+}
+
+footer .retele li {
+    display: inline-block;
+}
+
+footer .retele li a img {
+    width: 32px;
+    height: 32px;
+    transition: transform 0.3s ease;
+}
+
+footer .retele li a:hover img {
+    transform: scale(1.2);
+}
+
+footer ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: left;
+}
+
+footer ul li {
+    margin: 10px 10px;
+}
+
+footer ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2em;
+
+}
+
+footer ul li a:hover {
+    color: #a5a3a3;
+}
+
+
+.info {
+    display: flex;
+    justify-content: center;
+    margin-block: 20px;
+    gap: 20px;
+}
+
+.footer-list_header {
+    font-size: 0.9em;
+    color: #949393;
+}
+
+@media screen and (max-width: 1100px) {
+  #inceput img {
+      height:220px;
+      width: 20%;
+        }
+}
+
+@media screen and (max-width: 900px) {
+
+  section {
+          max-width: 600px;
+          }
+  #inceput img {
+      height:220px;
+      width: 30%;}
+}
+
+@media screen and (max-width: 650px) {
+
+  section {
+          max-width: 400px;
+      }
+  #inceput img {
+      height:220px;
+      width: 40%;}
+}
+
+@media screen and (max-width: 460px) {
+  section {
+          max-width: 300px;
+      }
+      #inceput img {
+        height:200px;
+      width: 50%;}
+}
+
+@media screen and (max-width: 400px) {
+  section {
+          max-width: 200px;
+      }
+  li{font-size: 10px;}
+  footer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
+  #inceput img {
+    height:220px;
+  width: 50%;}
+}
+
+@media screen and (max-width: 285px) {
+  header{width: 100%;}
+  li{font-size: 10px;}
+  footer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+  }
+
+}
+
+@keyframes pulse
+{
+	0%{
+		opacity: 0.9;
+		transform: scale(1.15);
+	}
+
+
+	100%{
+		opacity: 1;
+		transform: scale(1.2);
+
+	}
+}
